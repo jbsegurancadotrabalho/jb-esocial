@@ -1,0 +1,22 @@
+{"properties": [
+  {
+    "name": "acidente.trabalho.api.url",
+    "type": "java.lang.String",
+    "description": "A description for 'acidente.trabalho.api.url'"
+  },
+  {
+    "name": "acidente.trabalho.auth.token",
+    "type": "java.lang.String",
+    "description": "A description for 'acidente.trabalho.auth.token'"
+  },
+  {
+    "name": "acidente.trabalho.auth.login",
+    "type": "java.lang.String",
+    "description": "A description for 'acidente.trabalho.auth.login'"
+  },
+  {
+    "name": "acidente.trabalho.auth.login",
+    "type": "java.lang.String",
+    "description": "A description for 'acidente.trabalho.auth.login'"
+  }
+]}
