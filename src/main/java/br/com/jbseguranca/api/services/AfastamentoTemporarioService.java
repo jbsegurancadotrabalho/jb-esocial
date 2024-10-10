@@ -6,27 +6,28 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.jbseguranca.api.domain.AcidenteTrabalho;
+import br.com.jbseguranca.api.domain.AfastamentoTemporario;
 
 @Service
-public class AcidenteTrabalhoService {
-
+public class AfastamentoTemporarioService {
+	
 	private final RestTemplate restTemplate;
-
+	
 	@Value("${endereco.tecnospeed.api.url}")
 	private String apiUrl;
-
+	
 	@Autowired
-	public AcidenteTrabalhoService(RestTemplate restTemplate) {
+	public AfastamentoTemporarioService(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
-
-	public AcidenteTrabalho consumirApiAcidenteTrabalho() {
+	
+	public AfastamentoTemporario consumirApiAfastamentoTrabalho() {
 		try {
-			return restTemplate.getForObject(apiUrl, AcidenteTrabalho.class);
+			return restTemplate.getForObject(apiUrl, AfastamentoTemporario.class);
 		} catch (RestClientException ex) {
 			ex.printStackTrace();
-			throw new RuntimeException("Erro ao consumir a API de Acidente de Trabalho.", ex);
+			throw new RuntimeException("Erro ao consumir a API de Afastamento temporário.", ex);
 		}
 	}
+
 }

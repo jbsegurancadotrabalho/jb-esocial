@@ -1,32 +1,31 @@
 package br.com.jbseguranca.api.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.jbseguranca.api.domain.AcidenteTrabalho;
+import br.com.jbseguranca.api.domain.SaudeTrabalhador;
 
 @Service
-public class AcidenteTrabalhoService {
-
+public class SaudeTrabalhadorService {
+	
 	private final RestTemplate restTemplate;
-
+	
 	@Value("${endereco.tecnospeed.api.url}")
 	private String apiUrl;
-
-	@Autowired
-	public AcidenteTrabalhoService(RestTemplate restTemplate) {
+	
+	public SaudeTrabalhadorService(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
-
-	public AcidenteTrabalho consumirApiAcidenteTrabalho() {
+	
+	public SaudeTrabalhador consumirApiSaudeTrabalhador() {
 		try {
-			return restTemplate.getForObject(apiUrl, AcidenteTrabalho.class);
+			return restTemplate.getForObject(apiUrl, SaudeTrabalhador.class);
 		} catch (RestClientException ex) {
 			ex.printStackTrace();
-			throw new RuntimeException("Erro ao consumir a API de Acidente de Trabalho.", ex);
+			throw new RuntimeException("Erro ao consumir a API de Monitoramento de Saúde do Trabalhador.", ex);
 		}
 	}
+
 }
