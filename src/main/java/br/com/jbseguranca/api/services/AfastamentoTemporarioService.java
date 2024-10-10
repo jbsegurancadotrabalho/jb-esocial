@@ -1,6 +1,7 @@
 package br.com.jbseguranca.api.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -12,6 +13,7 @@ public class AfastamentoTemporarioService {
 	
 	private final RestTemplate restTemplate;
 	
+	@Value("${endereco.tecnospeed.api.url}")
 	private String apiUrl;
 	
 	@Autowired
