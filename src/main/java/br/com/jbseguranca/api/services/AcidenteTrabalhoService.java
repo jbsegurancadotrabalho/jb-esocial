@@ -15,7 +15,7 @@ public class AcidenteTrabalhoService {
 	@Autowired
 	private final RestTemplate restTemplate;
 
-	@Value("${acidente.trabalho.api.url}")
+	@Value("${endereco.tecnospeed.api.url}")
 	private String apiUrl;
 
 	public AcidenteTrabalhoService(RestTemplate restTemplate) {
