@@ -7,6 +7,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import br.com.jbseguranca.api.domain.AfastamentoTemporario;
+import br.com.jbseguranca.api.exception.JbException;
 
 @Service
 public class AfastamentoTemporarioService {
@@ -30,4 +31,23 @@ public class AfastamentoTemporarioService {
 		}
 	}
 
-}
+	public AfastamentoTemporario getAfastamentoTemporarioById(String id) {
+		 try {
+	            String url = apiUrl + "/" + id;
+	            return restTemplate.getForObject(url, AfastamentoTemporario.class);
+	        } catch (RestClientException ex) {
+	            ex.printStackTrace();
+	            throw new JbException("Erro ao obter o Afastamento de Trabalho com ID: " );
+	        }
+	}
+
+	public AfastamentoTemporario createAfastamentoTemporario(AfastamentoTemporario afastamento) {
+		 try {
+	            return restTemplate.postForObject(apiUrl, afastamento, AfastamentoTemporario.class);
+	        } catch (RestClientException ex) {
+	            ex.printStackTrace();
+	            throw new JbException("Erro ao criar um novo Afastamento de Trabalho.");
+	        }
+	    }
+	}
+
