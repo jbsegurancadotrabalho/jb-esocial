@@ -18,5 +18,15 @@
     "name": "acidente.trabalho.auth.login",
     "type": "java.lang.String",
     "description": "A description for 'acidente.trabalho.auth.login'"
+  },
+  {
+    "name": "endereco.tecnospeed.api.url",
+    "type": "java.lang.String",
+    "description": "A description for 'endereco.tecnospeed.api.url'"
+  },
+  {
+    "name": "acidente.trabalho.auth.cnpj",
+    "type": "java.lang.String",
+    "description": "A description for 'acidente.trabalho.auth.cnpj'"
   }
 ]}

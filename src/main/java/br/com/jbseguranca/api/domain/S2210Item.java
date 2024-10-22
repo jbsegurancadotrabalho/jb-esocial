@@ -1,6 +1,6 @@
 package br.com.jbseguranca.api.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,171 +8,184 @@ import lombok.Setter;
 @Getter
 @Setter
 public class S2210Item {
-	
-	
-	@JsonProperty("indRetif_4")
-    private String indRetif4;
-    
-    @JsonProperty("nrRecibo_5")
-    private String nrRecibo5;
-    
-    @JsonProperty("tpAmb_6")
-    private String tpAmb6;
-    
-    @JsonProperty("procEmi_7")
-    private String procEmi7;
-    
-    @JsonProperty("verProc_8")
-    private String verProc8;
-    
-    @JsonProperty("tpInsc_14")
-    private String tpInsc14;
-    
-    @JsonProperty("nrInsc_15")
-    private String nrInsc15;
-    
-    @JsonProperty("cpfTrab_66")
-    private String cpfTrab66;
-    
-    @JsonProperty("matricula_68")
-    private String matricula68;
-    
-    @JsonProperty("codCateg_69")
-    private String codCateg69;
-    
-    @JsonProperty("dtAcid_20")
-    private String dtAcid20;
-    
-    @JsonProperty("tpAcid_21")
-    private String tpAcid21;
-    
-    @JsonProperty("hrAcid_22")
-    private String hrAcid22;
-    
-    @JsonProperty("hrsTrabAntesAcid_23")
-    private String hrsTrabAntesAcid23;
-    
-    @JsonProperty("tpCat_24")
-    private String tpCat24;
-    
-    @JsonProperty("indCatObito_25")
-    private String indCatObito25;
-    
-    @JsonProperty("dtObito_26")
-    private String dtObito26;
-    
-    @JsonProperty("indComunPolicia_27")
-    private String indComunPolicia27;
-    
-    @JsonProperty("codSitGeradora_28")
-    private String codSitGeradora28;
-    
-    @JsonProperty("iniciatCAT_29")
-    private String iniciatCAT29;
-    
-    @JsonProperty("obsCAT_30")
-    private String obsCAT30;
-    
-    @JsonProperty("ultDiaTrab_79")
-    private String ultDiaTrab79;
-    
-    @JsonProperty("houveAfast_80")
-    private String houveAfast80;
-    
-    @JsonProperty("tpLocal_32")
-    private String tpLocal32;
-    
-    @JsonProperty("dscLocal_33")
-    private String dscLocal33;
-    
-    @JsonProperty("tpLograd_76")
-    private String tpLograd76;
-    
-    @JsonProperty("dscLograd_34")
-    private String dscLograd34;
-    
-    @JsonProperty("nrLograd_35")
-    private String nrLograd35;
-    
-    @JsonProperty("complemento_73")
-    private String complemento73;
-    
-    @JsonProperty("bairro_74")
-    private String bairro74;
-    
-    @JsonProperty("cep_75")
-    private String cep75;
-    
-    @JsonProperty("codMunic_36")
-    private String codMunic36;
-    
-    @JsonProperty("uf_37")
-    private String uf37;
-    
-    @JsonProperty("pais_39")
-    private String pais39;
-    
-    @JsonProperty("codPostal_40")
-    private String codPostal40;
-    
-    @JsonProperty("tpInsc_77")
-    private String tpInsc77;
-    
-    @JsonProperty("nrInsc_78")
-    private String nrInsc78;
-    
-    @JsonProperty("codParteAting_42")
-    private String codParteAting42;
-    
-    @JsonProperty("lateralidade_43")
-    private String lateralidade43;
-    
-    @JsonProperty("codAgntCausador_45")
-    private String codAgntCausador45;
-    
-    @JsonProperty("dtAtendimento_48")
-    private String dtAtendimento48;
-    
-    @JsonProperty("hrAtendimento_49")
-    private String hrAtendimento49;
-    
-    @JsonProperty("indInternacao_50")
-    private String indInternacao50;
-    
-    @JsonProperty("durTrat_51")
-    private String durTrat51;
-    
-    @JsonProperty("indAfast_52")
-    private String indAfast52;
-    
-    @JsonProperty("dscLesao_53")
-    private String dscLesao53;
-    
-    @JsonProperty("dscCompLesao_54")
-    private String dscCompLesao54;
-    
-    @JsonProperty("diagProvavel_55")
-    private String diagProvavel55;
-    
-    @JsonProperty("codCID_56")
-    private String codCID56;
-    
-    @JsonProperty("observacao_57")
-    private String observacao57;
-    
-    @JsonProperty("nmEmit_59")
-    private String nmEmit59;
-    
-    @JsonProperty("ideOC_60")
-    private String ideOC60;
-    
-    @JsonProperty("nrOC_61")
-    private String nrOC61;
-    
-    @JsonProperty("ufOC_62")
-    private String ufOC62;
-    
-    @JsonProperty("nrRecCatOrig_65")
-    private String nrRecCatOrig65;
 
+    private String indRetif4;
+
+    private String nrRecibo5;
+
+    private String tpAmb;
+
+    private String procEmi;
+
+    private String verProc;
+
+    private String tpInsc;
+
+    private String nrInsc;
+
+    private String cpfTrab;
+
+    private String matricula;
+
+    private String codCateg;
+
+    private String dtAcid;
+
+    private String tpAcid;
+
+    private String hrAcid;
+
+    private String hrsTrabAntesAcid;
+
+    private String tpCat;
+
+    private String indCatObito;
+
+    private String dtObito;
+
+    private String indComunPolicia;
+
+    private String codSitGeradora;
+
+    private String iniciatCAT;
+
+    private String obsCAT;
+
+    private String ultDiaTrab;
+
+    private String houveAfast;
+
+    private String tpLocal;
+
+    private String dscLocal;
+
+    private String tpLograd;
+
+    private String dscLograd;
+
+    private String nrLograd;
+
+    private String complemento;
+
+    private String bairro;
+
+    private String cep;
+
+    private String codMunic;
+
+    private String uf;
+
+    private String pais;
+
+    private String codPostal;
+
+    private String tpInsc77;
+
+    private String nrInsc78;
+
+    private String codParteAting;
+
+    private String lateralidade;
+
+    private String codAgntCausador;
+
+    private String dtAtendimento;
+
+    private String hrAtendimento;
+
+    private String indInternacao;
+
+    private String durTrat;
+
+    private String indAfast;
+
+    private String dscLesao;
+
+    private String dscCompLesao;
+
+    private String diagProvavel;
+
+    private String codCID;
+    private String observacao;
+
+    private String nmEmit;
+
+    private String ideOC;
+
+    private String nrOC;
+
+    private String ufOC;
+
+    private String nrRecCatOrig;
+
+    @JsonCreator
+	public S2210Item(String indRetif4, String nrRecibo5, String tpAmb, String procEmi, String verProc, String tpInsc,
+			String nrInsc, String cpfTrab, String matricula, String codCateg, String dtAcid, String tpAcid,
+			String hrAcid, String hrsTrabAntesAcid, String tpCat, String indCatObito, String dtObito,
+			String indComunPolicia, String codSitGeradora, String iniciatCAT, String obsCAT, String ultDiaTrab,
+			String houveAfast, String tpLocal, String dscLocal, String tpLograd, String dscLograd, String nrLograd,
+			String complemento, String bairro, String cep, String codMunic, String uf, String pais, String codPostal,
+			String tpInsc77, String nrInsc78, String codParteAting, String lateralidade, String codAgntCausador,
+			String dtAtendimento, String hrAtendimento, String indInternacao, String durTrat, String indAfast,
+			String dscLesao, String dscCompLesao, String diagProvavel, String codCID, String observacao, String nmEmit,
+			String ideOC, String nrOC, String ufOC, String nrRecCatOrig) {
+		super();
+		this.indRetif4 = indRetif4;
+		this.nrRecibo5 = nrRecibo5;
+		this.tpAmb = tpAmb;
+		this.procEmi = procEmi;
+		this.verProc = verProc;
+		this.tpInsc = tpInsc;
+		this.nrInsc = nrInsc;
+		this.cpfTrab = cpfTrab;
+		this.matricula = matricula;
+		this.codCateg = codCateg;
+		this.dtAcid = dtAcid;
+		this.tpAcid = tpAcid;
+		this.hrAcid = hrAcid;
+		this.hrsTrabAntesAcid = hrsTrabAntesAcid;
+		this.tpCat = tpCat;
+		this.indCatObito = indCatObito;
+		this.dtObito = dtObito;
+		this.indComunPolicia = indComunPolicia;
+		this.codSitGeradora = codSitGeradora;
+		this.iniciatCAT = iniciatCAT;
+		this.obsCAT = obsCAT;
+		this.ultDiaTrab = ultDiaTrab;
+		this.houveAfast = houveAfast;
+		this.tpLocal = tpLocal;
+		this.dscLocal = dscLocal;
+		this.tpLograd = tpLograd;
+		this.dscLograd = dscLograd;
+		this.nrLograd = nrLograd;
+		this.complemento = complemento;
+		this.bairro = bairro;
+		this.cep = cep;
+		this.codMunic = codMunic;
+		this.uf = uf;
+		this.pais = pais;
+		this.codPostal = codPostal;
+		this.tpInsc77 = tpInsc77;
+		this.nrInsc78 = nrInsc78;
+		this.codParteAting = codParteAting;
+		this.lateralidade = lateralidade;
+		this.codAgntCausador = codAgntCausador;
+		this.dtAtendimento = dtAtendimento;
+		this.hrAtendimento = hrAtendimento;
+		this.indInternacao = indInternacao;
+		this.durTrat = durTrat;
+		this.indAfast = indAfast;
+		this.dscLesao = dscLesao;
+		this.dscCompLesao = dscCompLesao;
+		this.diagProvavel = diagProvavel;
+		this.codCID = codCID;
+		this.observacao = observacao;
+		this.nmEmit = nmEmit;
+		this.ideOC = ideOC;
+		this.nrOC = nrOC;
+		this.ufOC = ufOC;
+		this.nrRecCatOrig = nrRecCatOrig;
+	}
+    
+    
 }

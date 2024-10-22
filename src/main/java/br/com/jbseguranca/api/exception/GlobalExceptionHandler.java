@@ -11,14 +11,12 @@ public class GlobalExceptionHandler {
     
     @ExceptionHandler(RestClientException.class)
     public ResponseEntity<String> handleRestClientException(RestClientException ex) {
-        // Log da exceção
         ex.printStackTrace();
         return new ResponseEntity<>("Erro ao consumir a API externa.", HttpStatus.BAD_GATEWAY);
     }
     
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception ex) {
-        // Log da exceção
         ex.printStackTrace();
         return new ResponseEntity<>("Ocorreu um erro interno.", HttpStatus.INTERNAL_SERVER_ERROR);
     }
