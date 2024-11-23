@@ -43,5 +43,5 @@ Para mais informações de como criação de rota, cadastro de certificado digit
 
 
 > [!WARNING]  
-> No dia _18/11/2024_ foi realizado uma reunião de onboard com um funcionario da tecnospeed **Manuel Valente**, onde foi explicado e tirado varias dúvida o fluxo e a integração.
+> No dia _19/11/2024_ foi realizado uma reunião de onboard com um funcionario da tecnospeed **Manuel Valente**, onde foi explicado e tirado varias dúvida o fluxo e a integração.
 > Segue o link do video, casó não consiga acesso é necessário socilitar o acesso ao Jesser [Video](https://drive.google.com/file/d/1at0PIM5ku_EJueDwPeCdvBKoFLgf_e7J/view?ts=673f41a0) 
