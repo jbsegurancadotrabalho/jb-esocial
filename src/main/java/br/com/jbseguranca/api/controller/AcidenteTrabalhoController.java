@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.jbseguranca.api.domain.AcidenteTrabalho;
 import br.com.jbseguranca.api.services.AcidenteTrabalhoService;
 
 @RestController
@@ -28,27 +29,23 @@ public class AcidenteTrabalhoController {
 //		return acidenteTrabalhoService.getAcidenteTrabalhoById(id);
 //	}
 
-	@PostMapping(consumes = "text/tx2")
-	public ResponseEntity<?> createAcidenteTrabalho(@RequestBody String tx2Content,
-			@RequestHeader("cpfCnpjTransmissor") String cpfCnpjTransmissor,
-			@RequestHeader("cpfCnpjEmpregador") String cpfCnpjEmpregador,
-			@RequestHeader("idGrupoEventos") String idGrupoEventos, @RequestHeader("versaoManual") String versaoManual,
-			@RequestHeader("ambiente") String ambiente) {
-		try {
-			if (tx2Content == null || tx2Content.isEmpty()) {
-				return ResponseEntity.badRequest().body("Conteúdo TX2 não pode ser vazio.");
-			}
+	@PostMapping("/criar")
+    public ResponseEntity<String> criarAcidenteTrabalho(@RequestBody AcidenteTrabalho acidenteTrabalho) {
+	    
+		  try {
+	            // Chama o serviço para criar o acidente de trabalho
+	            String acidenteCriado = acidenteTrabalhoService.createAcidenteTrabalho(acidenteTrabalho);
 
-			String response = acidenteTrabalhoService.createAcidenteTrabalho(tx2Content, cpfCnpjTransmissor,
-					cpfCnpjEmpregador, idGrupoEventos, versaoManual, ambiente);
+	            // Retorna uma resposta de sucesso com o objeto criado
+	            return ResponseEntity.status(HttpStatus.CREATED).body(acidenteCriado);
+	        } catch (IllegalArgumentException e) {
+	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro: " + e.getMessage());
+	        } catch (Exception e) {
+	            // Se houver outros erros
+	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno: " + e.getMessage());
+	        }
+	    }
+	
 
-			return ResponseEntity.status(HttpStatus.CREATED).body(response);
-		} catch (IllegalArgumentException ex) {
-			return ResponseEntity.badRequest().body("Erro de validação: " + ex.getMessage());
-		} catch (Exception ex) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-					.body("Erro interno ao criar Acidente de Trabalho: " + ex.getMessage());
-		}
-	}
 
 }
