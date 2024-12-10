@@ -10,163 +10,162 @@ import lombok.Setter;
 @Getter
 @Setter
 public class S2210Item {
-	@NotNull(message = "não pode ser nulo")
+	@NotNull(message = "O campo 'indRetif_4' não pode ser vazio")
 	private String indRetif_4;
-	@NotNull(message = "não pode ser nulo")
+	@NotNull(message = "O campo 'nrRecibo_5' não pode ser vazio")
 	@Size(max = 23, message = "Recibo deve ter no máximo 23 caracteres")
-    private String nrRecibo_5;
-	@NotNull(message = "não pode ser nulo")
+	private String nrRecibo_5;
+	@NotNull(message = "O campo 'tpAmb_6' não pode ser vazio")
 	@Size(max = 1)
-    private String tpAmb_6;
-	@NotNull(message = "não pode ser nulo")
-	@Size(min = 1, max = 2)
-    private String procEmi_7;
-	@NotNull(message = "não pode ser nulo")
+	private String tpAmb_6;
+	@NotNull(message = "O campo 'procEmi_7' não pode ser vazio")
+	@Size(min = 1, max = 1)
+	private String procEmi_7;
+	@NotNull(message = "O campo 'verProc_8' não pode ser vazio")
 	@Size(min = 1, max = 20)
-    private String verProc_8;
-	@NotNull(message = "não pode ser nulo")
+	private String verProc_8;
+	@NotNull(message = "O campo 'tpInsc_14' não pode ser vazio")
 	@Size(max = 1)
-    private String tpInsc_14;
-	@Size( min = 8, max = 14, message = "deve ter entre 8 e 14 caracteres")
-    private String nrInsc_15;
+	private String tpInsc_14;
+	@Size(min = 8, max = 14, message = "deve ter entre 8 e 14 caracteres")
+	private String nrInsc_15;
 	@Size(max = 11, message = "deve ter no máximo 11 caracteres")
-    private String cpfTrab_66;
-	@Size(min=1, max=30, message = "deve ter entre 1 e 30 caracteres")
-    private String matricula_68;
-	@Size(max=3)
-    private String codCateg_69;
-	@NotNull(message = "não pode ser nulo")
-    private String dtAcid_20;
-	@NotNull(message = "não pode ser nulo")
+	private String cpfTrab_66;
+	@Size(min = 1, max = 30, message = "deve ter entre 1 e 30 caracteres")
+	private String matricula_68;
+	@Size(max = 3)
+	private String codCateg_69;
+	@NotNull(message = "O campo 'dtAcid_20' não pode ser vazio")
+	private String dtAcid_20;
+	@NotNull(message = "O campo 'tpAcid_21' não pode ser vazio")
 	@Size(max = 1)
-    private String tpAcid_21;
-	@NotNull(message = "não pode ser nulo")
+	private String tpAcid_21;
+	@NotNull(message = "O campo 'hrAcid_22' não pode ser vazio")
 	@Size(max = 4)
-    private String hrAcid_22;
+	private String hrAcid_22;
 	@Size(max = 4)
-	@NotNull(message = "não pode ser nulo")
-    private String hrsTrabAntesAcid_23;
+	@NotNull(message = "O campo 'hrsTrabAntesAcid_23' não pode ser vazio")
+	private String hrsTrabAntesAcid_23;
 	@Size(max = 1)
-	@NotNull(message = "não pode ser nulo")
-    private String tpCat_24;
+	@NotNull(message = "O campo 'tpCat_24' não pode ser vazio")
+	private String tpCat_24;
 	@Size(max = 1)
-	@NotNull(message = "não pode ser nulo")
+	@NotNull(message = "O campo 'indCatObito_25' não pode ser vazio")
 	private String indCatObito_25;
 	@Size(max = 1)
-	@NotNull(message = "não pode ser nulo")
-    private String dtObito_26;
+	@NotNull(message = "O campo 'dtObito_26' não pode ser vazio")
+	private String dtObito_26;
 	@Size(max = 1)
-	@NotNull(message = "não pode ser nulo")
-    private String indComunPolicia_27;
+	@NotNull(message = "O campo 'indComunPolicia_27' não pode ser vazio")
+	private String indComunPolicia_27;
 	@Size(max = 9)
-	@NotNull(message = "não pode ser nulo")
-    private String codSitGeradora_28;
+	@NotNull(message = "O campo 'codSitGeradora_28' não pode ser vazio")
+	private String codSitGeradora_28;
 	@Size(max = 1)
-	@NotNull(message = "não pode ser nulo")
-    private String iniciatCAT_29;
-	@Size(min=1,max = 999)
-    private String obsCAT_30;
-	
-    private String ultDiaTrab_79;
-    @NotNull(message = "não pode ser nulo")
-    @Size(max = 1)
-    private String houveAfast_80;
-    @Size(max = 1)
-    @NotNull(message = "não pode ser nulo")
-    private String tpLocal_32;
+	@NotNull(message = "O campo 'iniciatCAT_29' não pode ser vazio")
+	private String iniciatCAT_29;
+	@Size(min = 1, max = 999)
+	private String obsCAT_30;
+
+	private String ultDiaTrab_79;
+	@NotNull(message = "O campo 'houveAfast_80' não pode ser vazio")
+	@Size(max = 1)
+	private String houveAfast_80;
+	@Size(max = 1)
+	@NotNull(message = "O campo 'tpLocal_32' não pode ser vazio")
+	private String tpLocal_32;
 	@Size(min = 1, max = 255)
-	@NotNull(message = "não pode ser nulo")
-    private String dscLocal_33;
+	@NotNull(message = "O campo 'dscLocal_33' não pode ser vazio")
+	private String dscLocal_33;
 	@Size(min = 1, max = 4)
-	@NotNull(message = "não pode ser nulo")
-    private String tpLograd_76;
+	@NotNull(message = "O campo 'tpLograd_76' não pode ser vazio")
+	private String tpLograd_76;
 	@Size(min = 1, max = 100)
-	@NotNull(message = "não pode ser nulo")
-    private String dscLograd_34;
+	@NotNull(message = "O campo 'dscLograd_34' não pode ser vazio")
+	private String dscLograd_34;
 	@Size(min = 1, max = 10)
-    private String nrLograd_35;
+	private String nrLograd_35;
 	@Size(min = 1, max = 30)
-	@NotNull(message = "não pode ser nulo")
-    private String complemento_73;
+	@NotNull(message = "O campo 'complemento_73' não pode ser vazio")
+	private String complemento_73;
 	@Size(min = 1, max = 90)
-	@NotNull(message = "não pode ser nulo")
-    private String bairro_74;
+	@NotNull(message = "O campo 'bairro_74' não pode ser vazio")
+	private String bairro_74;
 	@Size(min = 1, max = 8)
-	@NotNull(message = "não pode ser nulo")
-    private String cep_75;
+	@NotNull(message = "O campo 'cep_75' não pode ser vazio")
+	private String cep_75;
 	@Size(min = 1, max = 7)
-	@NotNull(message = "não pode ser nulo")
-    private String codMunic_36;
+	@NotNull(message = "O campo 'codMunic_36' não pode ser vazio")
+	private String codMunic_36;
 	@Size(min = 1, max = 2)
-	@NotNull(message = "não pode ser nulo")
-    private String uf_37;
+	@NotNull(message = "O campo 'uf_37' não pode ser vazio")
+	private String uf_37;
 	@Size(min = 1, max = 3)
-	@NotNull(message = "não pode ser nulo")
-    private String pais_39;
+	@NotNull(message = "O campo 'pais_39' não pode ser vazio")
+	private String pais_39;
 	@Size(min = 4, max = 12)
-	@NotNull(message = "não pode ser nulo")
-    private String codPostal_40;
+	@NotNull(message = "O campo 'codPostal_40' não pode ser vazio")
+	private String codPostal_40;
 	@Size(max = 1)
-	@NotNull(message = "não pode ser nulo")
-    private String tpInsc_77;
+	@NotNull(message = "O campo 'tpInsc_77' não pode ser vazio")
+	private String tpInsc_77;
 	@Size(max = 14)
-	@NotNull(message = "não pode ser nulo")
-    private String nrInsc_78;
+	@NotNull(message = "O campo 'nrInsc_78' não pode ser vazio")
+	private String nrInsc_78;
 	@Size(max = 9)
-	@NotNull(message = "não pode ser nulo")
-    private String codParteAting_42;
+	@NotNull(message = "O campo 'codParteAting_42' não pode ser vazio")
+	private String codParteAting_42;
 	@Size(max = 1)
-	@NotNull(message = "não pode ser nulo")
-    private String lateralidade_43;
+	@NotNull(message = "O campo 'lateralidade_43' não pode ser vazio")
+	private String lateralidade_43;
 	@Size(max = 9)
-	@NotNull(message = "não pode ser nulo")
-    private String codAgntCausador_45;
+	@NotNull(message = "O campo 'codAgntCausador_45' não pode ser vazio")
+	private String codAgntCausador_45;
 	@Size(max = 1)
-	@NotNull(message = "não pode ser nulo")
-    private String dtAtendimento_48;
+	@NotNull(message = "O campo 'dtAtendimento_48' não pode ser vazio")
+	private String dtAtendimento_48;
 	@Size(max = 4)
-	@NotNull(message = "não pode ser nulo")
-	@NotNull(message = "não pode ser nulo")
-    private String hrAtendimento_49;
+	@NotNull(message = "O campo 'hrAtendimento_49' não pode ser vazio")
+	private String hrAtendimento_49;
 	@Size(max = 1)
-	@NotNull(message = "não pode ser nulo")
-    private String indInternacao_50;
-	@Size(min=1,max=4)
-	@NotNull(message = "não pode ser nulo")
-    private String durTrat_51;
+	@NotNull(message = "O campo 'indInternacao_50' não pode ser vazio")
+	private String indInternacao_50;
+	@Size(min = 1, max = 4)
+	@NotNull(message = "O campo 'durTrat_51' não pode ser vazio")
+	private String durTrat_51;
 	@Size(max = 1)
-	@NotNull(message = "não pode ser nulo")
-    private String indAfast_52;
+	@NotNull(message = "O campo 'indAfast_52' não pode ser vazio")
+	private String indAfast_52;
 	@Size(max = 9)
-	@NotNull(message = "não pode ser nulo")
-    private String dscLesao_53;
-	@Size(min=1, max = 200)
-	@NotNull(message = "não pode ser nulo")
-    private String dscCompLesao_54;
-	@Size(min= 1,max = 100)
-	@NotNull(message = "não pode ser nulo")
-    private String diagProvavel_55;
-	@Size(min= 3,max = 4)
-	@NotNull(message = "não pode ser nulo")
-    private String codCID_56;
-	@Size(min = 1, max=255)
-	@NotNull(message = "não pode ser nulo")
-    private String observacao_57;
+	@NotNull(message = "O campo 'dscLesao_53' não pode ser vazio")
+	private String dscLesao_53;
+	@Size(min = 1, max = 200)
+	@NotNull(message = "O campo 'dscCompLesao_54' não pode ser vazio")
+	private String dscCompLesao_54;
+	@Size(min = 1, max = 100)
+	@NotNull(message = "O campo 'diagProvavel_55' não pode ser vazio")
+	private String diagProvavel_55;
+	@Size(min = 3, max = 4)
+	@NotNull(message = "O campo 'codCID_56' não pode ser vazio")
+	private String codCID_56;
+	@Size(min = 1, max = 255)
+	@NotNull(message = "O campo 'observacao_57' não pode ser vazio")
+	private String observacao_57;
 	@Size(min = 2, max = 70)
-	@NotNull(message = "não pode ser nulo")
-    private String nmEmit_59;
+	@NotNull(message = "O campo 'nmEmit_59' não pode ser vazio")
+	private String nmEmit_59;
 	@Size(max = 1)
-	@NotNull(message = "não pode ser nulo")
-    private String ideOC_60;
+	@NotNull(message = "O campo 'ideOC_60' não pode ser vazio")
+	private String ideOC_60;
 	@Size(min = 1, max = 14)
-	@NotNull(message = "não pode ser nulo")
-    private String nrOC_61;
+	@NotNull(message = "O campo 'nrOC_61' não pode ser vazio")
+	private String nrOC_61;
 	@Size(min = 1, max = 2)
-	@NotNull(message = "não pode ser nulo")
-    private String ufOC_62;
+	@NotNull(message = "O campo 'ufOC_62' não pode ser vazio")
+	private String ufOC_62;
 	@Size(max = 23)
-	@NotNull(message = "não pode ser nulo")
-    private String nrRecCatOrig_65;
+	@NotNull(message = "O campo 'nrRecCatOrig_65' não pode ser vazio")
+	private String nrRecCatOrig_65;
     
     @JsonCreator
 	public S2210Item(String indRetif_4, String nrRecibo_5, String tpAmb_6, String procEmi_7, String verProc_8,
