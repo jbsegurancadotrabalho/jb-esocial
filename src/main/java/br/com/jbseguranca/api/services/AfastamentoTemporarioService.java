@@ -27,7 +27,7 @@ public class AfastamentoTemporarioService {
 			return restTemplate.getForObject(apiUrl, AfastamentoTemporario.class);
 		} catch (RestClientException ex) {
 			ex.printStackTrace();
-			throw new RuntimeException("Erro ao consumir a API de Afastamento temporário.", ex);
+			throw new JbException("Erro ao consumir a API de Afastamento temporário.", ex);
 		}
 	}
 

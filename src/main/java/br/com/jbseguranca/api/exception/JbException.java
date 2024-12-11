@@ -11,4 +11,9 @@ public class JbException extends RuntimeException {
 	public JbException(String mensagem) {
 		super(mensagem);
 	}
+	
+	public JbException(String mensagem, Exception ex) {
+		super(mensagem);
+	}
+	
 }

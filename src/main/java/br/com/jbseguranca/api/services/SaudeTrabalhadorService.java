@@ -25,7 +25,7 @@ public class SaudeTrabalhadorService {
 			return restTemplate.getForObject(apiUrl, SaudeTrabalhador.class);
 		} catch (RestClientException ex) {
 			ex.printStackTrace();
-			throw new RuntimeException("Erro ao consumir a API de Monitoramento de Saúde do Trabalhador.", ex);
+			throw new JbException("Erro ao consumir a API de Monitoramento de Saúde do Trabalhador.", ex);
 		}
 	}
 
