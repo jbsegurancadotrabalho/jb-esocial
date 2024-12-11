@@ -10,16 +10,16 @@ import br.com.jbseguranca.api.exception.JbException;
 
 @Service
 public class SaudeTrabalhadorService {
-	
+
 	private final RestTemplate restTemplate;
-	
+
 	@Value("${endereco.tecnospeed.api.url}")
 	private String apiUrl;
-	
+
 	public SaudeTrabalhadorService(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
-	
+
 	public SaudeTrabalhador consumirApiSaudeTrabalhador() {
 		try {
 			return restTemplate.getForObject(apiUrl, SaudeTrabalhador.class);
@@ -29,4 +29,22 @@ public class SaudeTrabalhadorService {
 		}
 	}
 
+	public SaudeTrabalhador getSaudeTrabalhadorById(String id) {
+		try {
+			String url = apiUrl + "/" + id;
+			return restTemplate.getForObject(url, SaudeTrabalhador.class);
+		} catch (RestClientException ex) {
+			ex.printStackTrace();
+			throw new JbException("Erro ao obter dados de Saúde do Trabalho com ID: ");
+		}
+	}
+
+	public SaudeTrabalhador createSaudeTrabalhadorById(SaudeTrabalhador trabalhador) {
+		try {
+			return restTemplate.postForObject(apiUrl, trabalhador, SaudeTrabalhador.class);
+		} catch (RestClientException ex) {
+			ex.printStackTrace();
+			throw new JbException("Erro ao criar um novo laudo de Saúde do Trabalhador.");
+		}
+	}
 }
