@@ -28,5 +28,20 @@
     "name": "acidente.trabalho.auth.cnpj",
     "type": "java.lang.String",
     "description": "A description for 'acidente.trabalho.auth.cnpj'"
+  },
+  {
+    "name": "versao.manual",
+    "type": "java.lang.String",
+    "description": "A description for 'versao.manual'"
+  },
+  {
+    "name": "id.grupo.eventos",
+    "type": "java.lang.String",
+    "description": "A description for 'id.grupo.eventos'"
+  },
+  {
+    "name": "ambiente",
+    "type": "java.lang.String",
+    "description": "A description for 'ambiente'"
   }
 ]}
