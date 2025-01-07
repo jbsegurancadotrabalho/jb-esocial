@@ -70,6 +70,7 @@ public class AcidenteTrabalhoService {
 
 	        if (response.getStatusCode().is2xxSuccessful()) {
 	            // Converte a resposta para o DTO
+	        	log.info("Lote Recebido com Sucesso.", response.getBody());
 	            return objectMapper.readValue(response.getBody(), ApiResponse.class);
 	        } else {
 	            throw new JbException("Erro na API: Código " + response.getStatusCodeValue());
