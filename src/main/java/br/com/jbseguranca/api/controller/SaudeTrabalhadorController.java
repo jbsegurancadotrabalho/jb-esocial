@@ -11,7 +11,7 @@ import br.com.jbseguranca.api.domain.SaudeTrabalhador;
 import br.com.jbseguranca.api.services.SaudeTrabalhadorService;
 
 @RestController
-@RequestMapping("/saudetrabalhador")
+@RequestMapping("/saude-trabalhador")
 public class SaudeTrabalhadorController {
 	
 	@Autowired

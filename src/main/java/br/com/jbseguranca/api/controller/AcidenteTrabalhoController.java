@@ -15,7 +15,7 @@ import br.com.jbseguranca.api.dto.ApiResponse;
 import br.com.jbseguranca.api.services.AcidenteTrabalhoService;
 
 @RestController
-@RequestMapping("/acidentetrabalho")
+@RequestMapping("/acidente-trabalho")
 public class AcidenteTrabalhoController {
 
 	@Autowired
