@@ -11,7 +11,7 @@ import br.com.jbseguranca.api.services.AfastamentoTemporarioService;
 
 
 @RestController
-@RequestMapping("/afastamentotemporario")
+@RequestMapping("/afastamento-temporario")
 public class AfastamentoTemporarioController {
 	
 	@Autowired
