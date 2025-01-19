@@ -35,17 +35,12 @@ public class AcidenteTrabalhoController {
 	@PostMapping("/criar")
 	@ResponseStatus(code = HttpStatus.CREATED)
     public ResponseEntity<ApiResponse> criarAcidenteTrabalho(@RequestBody AcidenteTrabalho acidenteTrabalho) {
-	    
 		  try {
-	            // Chama o serviço para criar o acidente de trabalho
 	            ApiResponse acidenteCriado = acidenteTrabalhoService.createAcidenteTrabalho(acidenteTrabalho);
-
-	            // Retorna uma resposta de sucesso com o objeto criado
 	            return ResponseEntity.status(HttpStatus.CREATED).body(acidenteCriado);
 	        } catch (IllegalArgumentException e) {
 	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	        } catch (Exception e) {
-	            // Se houver outros erros
 	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 	        }
 	    }
