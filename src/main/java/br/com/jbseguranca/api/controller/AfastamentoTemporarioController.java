@@ -3,10 +3,13 @@ package br.com.jbseguranca.api.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jbseguranca.api.domain.AfastamentoTemporario;
+import br.com.jbseguranca.api.dto.ApiResponse;
 import br.com.jbseguranca.api.services.AfastamentoTemporarioService;
 
 
@@ -26,9 +29,9 @@ public class AfastamentoTemporarioController {
 	public AfastamentoTemporario getAfastamentoTemporarioById(@PathVariable String id) {
 		return afastamentoTemporarioService.getAfastamentoTemporarioById(id);
 	}
-	
-	public AfastamentoTemporario createAfastamentoTemporario(AfastamentoTemporario afastamento) {
-		return afastamentoTemporarioService.createAfastamentoTemporario(afastamento);
+	@PostMapping
+	public ApiResponse createAfastamentoTemporario(@RequestBody AfastamentoTemporario afastamentoTemporario) {
+		return afastamentoTemporarioService.createAfastamentoTemporario(afastamentoTemporario);
 
 	}
 

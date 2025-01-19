@@ -12,10 +12,10 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class RestTemplateConfig {
     
-    @Value("${acidente.trabalho.auth.token}")
+    @Value("${tecnospeed.auth.token}")
     private String apiToken;
     
-    @Value("${acidente.trabalho.auth.cnpj}")
+    @Value("${tecnospeed.auth.cnpj}")
     private String cnpjSh;
     
     @Bean
