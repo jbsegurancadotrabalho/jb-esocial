@@ -1,6 +1,6 @@
 package br.com.jbseguranca.api.domain;
 
-import java.util.Set;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -26,7 +26,7 @@ public class MonitoramentoSaudeTrabalhador {
 	@JsonProperty("ambiente")
 	private String ambiente;
 	@JsonProperty("s2220")
-	private Set<S2220Item> s2220;
+	private List<S2220Item> s2220;
 	
 }
 

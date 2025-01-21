@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AcidenteTrabalho {
+public class AgentesNocivos {
 	 @ApiModelProperty(value = "CPF/CNPJ do transmissor", required = true)
 	 @JsonProperty("cpfcnpjtransmissor")
     private String cpfCnpjTransmissor;
@@ -24,6 +24,7 @@ public class AcidenteTrabalho {
     private String versaoManual;
 	 @JsonProperty("ambiente")
     private String ambiente;
-	 @JsonProperty("s2210")
-    private List<S2210Item> s2210;
+	 @JsonProperty("s2240")
+	 private List <S2240Item> s2240;
+
 }
