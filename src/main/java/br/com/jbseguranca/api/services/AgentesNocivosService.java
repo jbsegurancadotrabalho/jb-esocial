@@ -75,10 +75,10 @@ public class AgentesNocivosService {
 		        }
 		    } catch (HttpClientErrorException ex) {
 		        //log.error("Erro ao criar Monitoramento da saúde do Trabalhor: {}", ex.getResponseBodyAsString());
-		        throw new JbException("Erro ao criar Monitoramento da saúde do Trabalhor: " + ex.getMessage(), ex);
+		        throw new JbException("Erro ao criar Agentes Nocivos: " + ex.getMessage(), ex);
 		    } catch (Exception ex) {
 		        //log.error("Erro inesperado ao criar Monitoramento da saúde do Trabalhor.", ex);
-		        throw new JbException("Erro inesperado ao criar Monitoramento da saúde do Trabalhor.", ex);
+		        throw new JbException("Erro inesperado ao criar dados de Agentes Nocivos.", ex);
 		    }
 		
 	}

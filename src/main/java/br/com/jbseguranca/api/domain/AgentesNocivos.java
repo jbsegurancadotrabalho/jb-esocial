@@ -13,18 +13,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AgentesNocivos {
-	 @ApiModelProperty(value = "CPF/CNPJ do transmissor", required = true)
-	 @JsonProperty("cpfcnpjtransmissor")
-    private String cpfCnpjTransmissor;
-	 @JsonProperty("cpfcnpjempregador")
-    private String cpfCnpjEmpregador;
-	 @JsonProperty("idgrupoeventos")
-    private String idGrupoEventos;
-	 @JsonProperty("versaomanual")
-    private String versaoManual;
-	 @JsonProperty("ambiente")
-    private String ambiente;
-	 @JsonProperty("s2240")
-	 private List <S2240Item> s2240;
+	@ApiModelProperty(value = "CPF/CNPJ do transmissor", required = true)
+	@JsonProperty("cpfcnpjtransmissor")
+	private String cpfCnpjTransmissor;
+
+	@JsonProperty("cpfcnpjempregador")
+	private String cpfCnpjEmpregador;
+
+	@JsonProperty("idgrupoeventos")
+	private String idGrupoEventos;
+
+	@JsonProperty("versaomanual")
+	private String versaoManual;
+
+	@JsonProperty("ambiente")
+	private String ambiente;
+
+	@JsonProperty("s2240")
+	private List<S2240Item> s2240;
 
 }
