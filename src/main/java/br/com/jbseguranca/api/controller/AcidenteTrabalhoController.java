@@ -21,13 +21,8 @@ public class AcidenteTrabalhoController {
 	@Autowired
 	private AcidenteTrabalhoService acidenteTrabalhoService;
 
-	@GetMapping()
-    public AcidenteTrabalho getAcidenteTrabalho() {
-        return acidenteTrabalhoService.consumirApiAcidenteTrabalho();
-    }
-	
 	@GetMapping("/{id}")
-	public AcidenteTrabalho getAcidenteTrabalhoById(@PathVariable String id) {
+	public ApiResponse getAcidenteTrabalhoById(@PathVariable String id) {
 		return acidenteTrabalhoService.getAcidenteTrabalhoById(id);
 	}
 

@@ -1,6 +1,8 @@
 package br.com.jbseguranca.api.services;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -11,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import br.com.jbseguranca.api.domain.AcidenteTrabalho;
 import br.com.jbseguranca.api.dto.ApiResponse;
 import br.com.jbseguranca.api.exception.JbException;
+import br.com.jbseguranca.api.exception.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -35,24 +38,39 @@ public class AcidenteTrabalhoService {
 		this.restTemplate = restTemplate;
 	}
 
-	public AcidenteTrabalho consumirApiAcidenteTrabalho() {
-		try {
-			return restTemplate.getForObject(apiUrl, AcidenteTrabalho.class);
-		} catch (HttpClientErrorException ex) {
-			throw new JbException("Erro na requisição: " + ex.getStatusCode() + " - " + ex.getResponseBodyAsString(),
-					ex);
-		} catch (Exception ex) {
-			throw new JbException("Erro desconhecido ao consumir a API de Acidente de Trabalho.", ex);
-		}
-	}
+	public ApiResponse getAcidenteTrabalhoById(String id) {
+	    if (apiUrl == null || apiUrl.isEmpty()) {
+	        throw new JbException("A URL da API não está configurada.");
+	    }
 
-	public AcidenteTrabalho getAcidenteTrabalhoById(String id) {
-		try {
-			String url = apiUrl + "/" + id;
-			return restTemplate.getForObject(url, AcidenteTrabalho.class);
-		} catch (HttpClientErrorException ex) {
-			throw new JbException("Erro ao obter Acidente de Trabalho com ID " + id + ": " + ex.getMessage(), ex);
-		}
+	    try {
+	        String urlComId = apiUrl + "/" + id;
+
+	        ResponseEntity<String> response = restTemplate.getForEntity(urlComId, String.class);
+	        
+	        HttpStatusCode statusCode = response.getStatusCode();
+
+	        if (statusCode.is2xxSuccessful()) {
+	            ObjectMapper objectMapper = new ObjectMapper();
+	            return objectMapper.readValue(response.getBody(), ApiResponse.class);
+	        }else if(statusCode ==HttpStatus.NOT_FOUND) {
+	        	throw new ResourceNotFoundException("Acidente de Trabalho não encontrado " +  id);
+	        }else {
+	            // Caso não seja 2xx, tratamos como erro
+	            throw new JbException("Erro na API: Código " + response.getStatusCodeValue()
+	                                  + " - Resposta: " + response.getBody());
+	        }
+	    } catch (HttpClientErrorException ex) {
+	    	
+	    	if(ex.getStatusCode() == HttpStatus.NOT_FOUND) {
+	    		throw new ResourceNotFoundException("Acidente de Trabalho não encontrado " +  id, ex);
+	    	}
+	        // Aqui você consegue ver o status e o body de erro
+	        System.out.println("HttpClientErrorException: " + ex.getStatusCode() + " -> " + ex.getResponseBodyAsString());
+	        throw new JbException("Erro ao obter Acidente de Trabalho: " + ex.getMessage(), ex);
+	    } catch (Exception ex) {
+	        throw new JbException("Erro inesperado ao obter Acidente de Trabalho.", ex);
+	    }
 	}
 
 	public ApiResponse createAcidenteTrabalho(AcidenteTrabalho acidenteTrabalho) {
@@ -83,22 +101,5 @@ public class AcidenteTrabalhoService {
 	        throw new JbException("Erro inesperado ao criar Acidente de Trabalho.", ex);
 	    }
 	}
-
-
-//	private String parseResponse(String responseBody) {
-//		try {
-//			ObjectMapper objectMapper = new ObjectMapper();
-//			JsonNode rootNode = objectMapper.readTree(responseBody);
-//			log.info("Resposta da API: {}", responseBody); // Log para ver a resposta completa
-//			String id = rootNode.path("id").asText();
-//			String codigo = rootNode.path("status").path("codigo").asText();
-//			String mensagem = rootNode.path("status").path("mensagem").asText();
-//			String recibo = rootNode.path("recibo").asText();
-//
-//			return String.format("ID: %s, Código: %s, Mensagem: %s, Recibo: %s", id, codigo, mensagem, recibo);
-//		} catch (JsonProcessingException ex) {
-//			throw new JbException("Erro ao processar resposta da API.", ex);
-//		}
-//	}
-
 }
+
