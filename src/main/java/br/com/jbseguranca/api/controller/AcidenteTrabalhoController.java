@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import br.com.jbseguranca.api.domain.AcidenteTrabalho;
 import br.com.jbseguranca.api.dto.ApiResponse;
@@ -21,10 +22,19 @@ public class AcidenteTrabalhoController {
 	@Autowired
 	private AcidenteTrabalhoService acidenteTrabalhoService;
 
+//	@GetMapping("/{id}")
+//	public ApiResponse getAcidenteTrabalhoById(@PathVariable String id) {
+//		return acidenteTrabalhoService.getAcidenteTrabalhoById(id);
+//	}
+	
 	@GetMapping("/{id}")
-	public ApiResponse getAcidenteTrabalhoById(@PathVariable String id) {
-		return acidenteTrabalhoService.getAcidenteTrabalhoById(id);
+	public AcidenteTrabalho getAcidenteTrabalhoById(@PathVariable String id) {
+	    // Service retorna Optional
+	    return acidenteTrabalhoService
+	        .getAcidenteTrabalhoByIdd(id)
+	        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Acidente não encontrado"));
 	}
+
 
 	@PostMapping("/criar")
     public ResponseEntity<ApiResponse> criarAcidenteTrabalho(@RequestBody AcidenteTrabalho acidenteTrabalho) {
