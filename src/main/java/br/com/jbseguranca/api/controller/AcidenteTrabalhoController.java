@@ -3,30 +3,27 @@ package br.com.jbseguranca.api.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import br.com.jbseguranca.api.domain.AcidenteTrabalho;
 import br.com.jbseguranca.api.dto.ApiResponse;
 import br.com.jbseguranca.api.services.AcidenteTrabalhoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/acidentetrabalho")
+@Tag(name = "AcidenteTrabalho", description = "2210 - Operações de Acidente de Trabalho")
 public class AcidenteTrabalhoController {
 
 	@Autowired
 	private AcidenteTrabalhoService acidenteTrabalhoService;
 
-	@GetMapping("/{id}/{versaoManual}/{ambiente}")
-	public ApiResponse getAcidenteTrabalhoConsultarById(@PathVariable String id, @PathVariable String versaoManual,
-			@PathVariable String ambiente) {
-		return acidenteTrabalhoService.getAcidenteTrabalhoConsultaEventoById(id, versaoManual, ambiente);
-	}
-
 	@PostMapping("/criar")
+	@Operation(summary = "Criar Acidente de Trabalho")
 	public ResponseEntity<ApiResponse> criarAcidenteTrabalho(@RequestBody AcidenteTrabalho acidenteTrabalho) {
 
 		try {
