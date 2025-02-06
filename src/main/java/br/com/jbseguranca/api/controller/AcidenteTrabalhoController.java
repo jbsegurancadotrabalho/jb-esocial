@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
-
 import br.com.jbseguranca.api.domain.AcidenteTrabalho;
 import br.com.jbseguranca.api.dto.ApiResponse;
 import br.com.jbseguranca.api.services.AcidenteTrabalhoService;
@@ -22,37 +20,24 @@ public class AcidenteTrabalhoController {
 	@Autowired
 	private AcidenteTrabalhoService acidenteTrabalhoService;
 
-//	@GetMapping("/{id}")
-//	public ApiResponse getAcidenteTrabalhoById(@PathVariable String id) {
-//		return acidenteTrabalhoService.getAcidenteTrabalhoById(id);
-//	}
-	
-	@GetMapping("/{id}")
-	public AcidenteTrabalho getAcidenteTrabalhoById(@PathVariable String id) {
-	    // Service retorna Optional
-	    return acidenteTrabalhoService
-	        .getAcidenteTrabalhoByIdd(id)
-	        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Acidente não encontrado"));
+	@GetMapping("/{id}/{versaoManual}/{ambiente}")
+	public ApiResponse getAcidenteTrabalhoConsultarById(@PathVariable String id, @PathVariable String versaoManual,
+			@PathVariable String ambiente) {
+		return acidenteTrabalhoService.getAcidenteTrabalhoConsultaEventoById(id, versaoManual, ambiente);
 	}
 
-
 	@PostMapping("/criar")
-    public ResponseEntity<ApiResponse> criarAcidenteTrabalho(@RequestBody AcidenteTrabalho acidenteTrabalho) {
-	    
-		  try {
-	            // Chama o serviço para criar o acidente de trabalho
-	            ApiResponse acidenteCriado = acidenteTrabalhoService.createAcidenteTrabalho(acidenteTrabalho);
+	public ResponseEntity<ApiResponse> criarAcidenteTrabalho(@RequestBody AcidenteTrabalho acidenteTrabalho) {
 
-	            // Retorna uma resposta de sucesso com o objeto criado
-	            return ResponseEntity.status(HttpStatus.CREATED).body(acidenteCriado);
-	        } catch (IllegalArgumentException e) {
-	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-	        } catch (Exception e) {
-	            // Se houver outros erros
-	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-	        }
-	    }
-	
+		try {
+			ApiResponse acidenteCriado = acidenteTrabalhoService.createAcidenteTrabalho(acidenteTrabalho);
 
+			return ResponseEntity.status(HttpStatus.CREATED).body(acidenteCriado);
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+		}
+	}
 
 }

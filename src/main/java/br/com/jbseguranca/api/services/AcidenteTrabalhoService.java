@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -28,19 +31,24 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AcidenteTrabalhoService {
 
-//	@Autowired
-//	private RestTemplate restTemplate;
 
 	@Value("${endereco.tecnospeed.api.url}")
 	private String apiUrl;
+	
+	@Value("${endereco.tecnospeed.url.consulta}")
+	private String apiUrlConsultar;
 
 	@Value("${acidente.trabalho.auth.token}")
 	private String apiToken;
 
 	@Value("${acidente.trabalho.auth.cnpj}")
 	private String cnpjSh;
+	
+	@Value("${acidente.trabalho.auth.empregador}")
+	private String empregador;
 
 	private final RestTemplate restTemplate;
+	
 	@Autowired
 	private AcidenteTrabalhoRepository acidenteTrabalhoRepository;
 
@@ -52,55 +60,45 @@ public class AcidenteTrabalhoService {
         return acidenteTrabalhoRepository.save(acidenteTrabalho);
     }
 	
-	public Optional<AcidenteTrabalho> getAcidenteTrabalhoByIdd(String id) {
-	    UUID uuid;
-	    try {
-	        uuid = UUID.fromString(id);
-	    } catch (IllegalArgumentException e) {
-	        throw new JbException("ID inválido: " + id);
-	    }
-
-	    if (!acidenteTrabalhoRepository.existsById(uuid)) {
-	        throw new JbException("Pessoa não encontrada");
-	    }
-
-	    return acidenteTrabalhoRepository.findById(uuid);
-	}
-
-
-
-	public ApiResponse getAcidenteTrabalhoById(String id) {
-	    if (apiUrl == null || apiUrl.isEmpty()) {
+	public ApiResponse getAcidenteTrabalhoConsultaEventoById(String id, String versaoManual, String ambiente) {
+	    if (apiUrlConsultar == null || apiUrlConsultar.isEmpty()) {
 	        throw new JbException("A URL da API não está configurada.");
 	    }
-
+	    
 	    try {
-	        String urlComId = apiUrl + "/" + id;
-
-	        ResponseEntity<String> response = restTemplate.getForEntity(urlComId, String.class);
+	        String urlComId = apiUrlConsultar + "/" + id + "?versaomanual=" + versaoManual + "&ambiente=" + ambiente;
 	        
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.set("cnpj", cnpjSh);
+	        headers.set("token", apiToken);
+	        headers.set("empregador", empregador);
+	        
+	        HttpEntity<String> entity = new HttpEntity<>(headers);
+	        
+	        ResponseEntity<String> response = restTemplate.exchange(urlComId, HttpMethod.GET, entity, String.class);
 	        HttpStatusCode statusCode = response.getStatusCode();
-
+	        
 	        if (statusCode.is2xxSuccessful()) {
 	            ObjectMapper objectMapper = new ObjectMapper();
 	            return objectMapper.readValue(response.getBody(), ApiResponse.class);
-	        }else if(statusCode ==HttpStatus.NOT_FOUND) {
-	        	throw new ResourceNotFoundException("Acidente de Trabalho não encontrado " +  id);
-	        }else {
-	            throw new JbException("Erro na API: Código " + response.getStatusCodeValue()
-	                                  + " - Resposta: " + response.getBody());
+	        } else if (statusCode == HttpStatus.NOT_FOUND) {
+	            throw new ResourceNotFoundException("Acidente de Trabalho não encontrado " + id);
+	        } else {
+	            throw new JbException("Erro na API: Código " + response.getStatusCodeValue() 
+	                                      + " - Resposta: " + response.getBody());
 	        }
 	    } catch (HttpClientErrorException ex) {
-	    	
-	    	if(ex.getStatusCode() == HttpStatus.NOT_FOUND) {
-	    		throw new ResourceNotFoundException("Acidente de Trabalho não encontrado " +  id, ex);
-	    	}
-	        System.out.println("HttpClientErrorException: " + ex.getStatusCode() + " -> " + ex.getResponseBodyAsString());
+	        if (ex.getStatusCode() == HttpStatus.NOT_FOUND) {
+	            throw new ResourceNotFoundException("Acidente de Trabalho não encontrado " + id, ex);
+	        }
+	        System.out.println("HttpClientErrorException: " + ex.getStatusCode() 
+	                           + " -> " + ex.getResponseBodyAsString());
 	        throw new JbException("Erro ao obter Acidente de Trabalho: " + ex.getMessage(), ex);
 	    } catch (Exception ex) {
 	        throw new JbException("Erro inesperado ao obter Acidente de Trabalho.", ex);
 	    }
 	}
+
 
 	public ApiResponse createAcidenteTrabalho(AcidenteTrabalho acidenteTrabalho) {
 		if (apiUrl == null || apiUrl.isEmpty()) {
