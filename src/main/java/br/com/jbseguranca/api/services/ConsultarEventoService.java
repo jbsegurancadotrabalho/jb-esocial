@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.jbseguranca.api.dto.ApiResponse;
+import br.com.jbseguranca.api.dto.response.ApiResponseGet;
 import br.com.jbseguranca.api.exception.JbException;
 import br.com.jbseguranca.api.exception.ResourceNotFoundException;
 
@@ -38,7 +39,7 @@ public class ConsultarEventoService {
 		this.restTemplate = new RestTemplate();
 	}
 	
-	public ApiResponse ConsultaEventoPorLoteById(String id, String versaoManual, String ambiente) {
+	public ApiResponseGet ConsultaEventoPorLoteById(String id, String versaoManual, String ambiente) {
 	    if (apiUrlConsultar == null || apiUrlConsultar.isEmpty()) {
 	        throw new JbException("A URL da API não está configurada.");
 	    }
@@ -58,7 +59,7 @@ public class ConsultarEventoService {
 	        
 	        if (statusCode.is2xxSuccessful()) {
 	            ObjectMapper objectMapper = new ObjectMapper();
-	            return objectMapper.readValue(response.getBody(), ApiResponse.class);
+	            return objectMapper.readValue(response.getBody(), ApiResponseGet.class);
 	        } else if (statusCode == HttpStatus.NOT_FOUND) {
 	            throw new ResourceNotFoundException("Consulta por lote não encontrado " + id);
 	        } else {

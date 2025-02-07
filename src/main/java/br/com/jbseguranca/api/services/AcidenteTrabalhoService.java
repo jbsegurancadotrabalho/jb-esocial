@@ -187,7 +187,6 @@ public class AcidenteTrabalhoService {
 			s2210Item.setCodCID_56(item.getCodCID_56());
 			s2210Item.setObservacao_57(item.getObservacao_57());
 			s2210Item.setNmEmit_59(item.getNmEmit_59());
-			s2210Item.setIdeOC_60(item.getIdeOC_60());
 			s2210Item.setNrOC_61(item.getNrOC_61());
 			s2210Item.setUfOC_62(item.getUfOC_62());
 			s2210Item.setNrRecCatOrig_65(item.getNrRecCatOrig_65());

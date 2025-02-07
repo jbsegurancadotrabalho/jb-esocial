@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jbseguranca.api.dto.ApiResponse;
+import br.com.jbseguranca.api.dto.response.ApiResponseGet;
 import br.com.jbseguranca.api.services.ConsultarEventoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,7 +23,7 @@ public class ConsultarEventoController {
 	
 	@GetMapping("/lote/{id}/{versaoManual}/{ambiente}")
 	@Operation(summary = "Consultar por Lote")
-	public ApiResponse getConsultarLoteById(@PathVariable String id, @PathVariable String versaoManual,
+	public ApiResponseGet getConsultarLoteById(@PathVariable String id, @PathVariable String versaoManual,
 			@PathVariable String ambiente) {
 		return consultarEventoService.ConsultaEventoPorLoteById(id, versaoManual, ambiente);
 	}

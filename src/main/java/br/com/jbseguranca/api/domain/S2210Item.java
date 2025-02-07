@@ -237,9 +237,6 @@ public class S2210Item {
 	@JsonProperty("nmEmit_59")
     private String nmEmit_59;
 	@Size(max = 1)
-	@NotNull(message = "não pode ser nulo")
-	@JsonProperty("indIEmit_60")
-    private String ideOC_60;
 	@Size(min = 1, max = 14)
 	@NotNull(message = "não pode ser nulo")
 	@JsonProperty("nrOC_61")
