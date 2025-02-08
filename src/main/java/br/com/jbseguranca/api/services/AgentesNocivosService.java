@@ -20,10 +20,10 @@ public class AgentesNocivosService {
 	@Value("${endereco.tecnospeed.api.url}")
 	private String apiUrl;
 	
-	@Value("${tecnospeed.auth.token}")
+	@Value("${acidente.trabalho.auth.token}")
 	private String apiToken;
 
-	@Value("${tecnospeed.auth.cnpj}")
+	@Value("${acidente.trabalho.auth.cnpj}")
 	private String cnpjSh;
 	
 	private final RestTemplate restTemplate;

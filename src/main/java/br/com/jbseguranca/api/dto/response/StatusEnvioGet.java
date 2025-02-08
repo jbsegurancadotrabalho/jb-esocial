@@ -1,4 +1,4 @@
-package br.com.jbseguranca.api.dto;
+package br.com.jbseguranca.api.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class StatusEnvio {
+public class StatusEnvioGet {
 	private int codigo;
 	private String mensagem;
 
