@@ -20,10 +20,10 @@ public class MonitoramentoSaudeTrabalhadorService {
 	@Value("${endereco.tecnospeed.api.url}")
 	private String apiUrl;
 
-	@Value("${acidente.trabalho.auth.token}")
+	@Value("${tecnospeed.auth.token}")
 	private String apiToken;
 
-	@Value("${acidente.trabalho.auth.cnpj}")
+	@Value("${tecnospeed.auth.cnpj}")
 	private String cnpjSh;
 
 	private final RestTemplate restTemplate;

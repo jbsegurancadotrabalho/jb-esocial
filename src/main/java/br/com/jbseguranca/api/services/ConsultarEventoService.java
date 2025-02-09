@@ -24,13 +24,13 @@ public class ConsultarEventoService {
 	@Value("${endereco.tecnospeed.url.consulta}")
 	private String apiUrlConsultar;
 
-	@Value("${acidente.trabalho.auth.token}")
+	@Value("${tecnospeed.auth.token}")
 	private String apiToken;
 
-	@Value("${acidente.trabalho.auth.cnpj}")
+	@Value("${tecnospeed.auth.cnpj}")
 	private String cnpjSh;
 	
-	@Value("${acidente.trabalho.auth.empregador}")
+	@Value("${tecnospeed.auth.empregador}")
 	private String empregador;
 
 	private final RestTemplate restTemplate;
