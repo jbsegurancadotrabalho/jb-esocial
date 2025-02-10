@@ -9,6 +9,10 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DataResponse {
     private String id;
+    @JsonProperty("cnpj_sh")
+    private String cnpj_sh;
+    @JsonProperty("data_criacao")
+    private String data_criacao;
     @JsonProperty("status_envio")
     private StatusEnvio  statusEnvio;
 }
