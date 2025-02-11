@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.jbseguranca.api.dto.ApiResponse;
 import br.com.jbseguranca.api.dto.response.ApiResponseGet;
 import br.com.jbseguranca.api.services.ConsultarEventoService;
 import io.swagger.v3.oas.annotations.Operation;

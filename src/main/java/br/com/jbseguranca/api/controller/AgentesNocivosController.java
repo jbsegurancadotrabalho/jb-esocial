@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.jbseguranca.api.domain.AgentesNocivos;
 import br.com.jbseguranca.api.dto.ApiResponse;
 import br.com.jbseguranca.api.services.AgentesNocivosService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -25,6 +26,7 @@ public class AgentesNocivosController {
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
+	@Operation(summary = "Criar Agentes Nocivos")
 	public ApiResponse createAgentesNocivos(@RequestBody AgentesNocivos agentesNocivos) {
 		return agentesNocivosService.createAgentesNocivos(agentesNocivos);
 	}
