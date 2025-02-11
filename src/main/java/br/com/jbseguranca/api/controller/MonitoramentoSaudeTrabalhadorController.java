@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.jbseguranca.api.domain.MonitoramentoSaudeTrabalhador;
 import br.com.jbseguranca.api.dto.ApiResponse;
 import br.com.jbseguranca.api.services.MonitoramentoSaudeTrabalhadorService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/monitoramento-saude-trabalhador")
+@Tag(name = "MonitoramentoSaudeTrabalhador", description = "2210 - Operações de Acidente de Trabalho")
 public class MonitoramentoSaudeTrabalhadorController {
 	
 	@Autowired
@@ -21,6 +24,7 @@ public class MonitoramentoSaudeTrabalhadorController {
 
 	
 	@PostMapping
+	@Operation(summary = "Criar Monitoramento Saude Trabalhador")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ApiResponse monitoramentoSaudeTrabalhador(@RequestBody MonitoramentoSaudeTrabalhador monitoramentoSaudeTrabalhador) {
 		return  monitoramentoSaudeTrabalhadorService.createMonitoramentoSaudeTrabalho(monitoramentoSaudeTrabalhador);
