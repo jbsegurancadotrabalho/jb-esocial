@@ -1,7 +1,9 @@
 package br.com.jbseguranca.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +17,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/afastamentotemporario")
-@Tag(name = "Afastamento Temporario", description = "2230 - Operações de Acidente de Trabalho")
+@Tag(name = "Afastamento Temporario", description = "2230 - Afastamento Temporario")
 public class AfastamentoTemporarioController {
 	
 	@Autowired
@@ -24,9 +26,8 @@ public class AfastamentoTemporarioController {
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@Operation(summary = "Criar Afastamento Temporario")
-	public AfastamentoTemporario createAfastamentoTemporario(AfastamentoTemporario afastamento) {
+	public ApiResponse createAfastamentoTemporario(@RequestBody AfastamentoTemporario afastamento) {
 		return afastamentoTemporarioService.createAfastamentoTemporario(afastamento);
-
 	}
 
 }
