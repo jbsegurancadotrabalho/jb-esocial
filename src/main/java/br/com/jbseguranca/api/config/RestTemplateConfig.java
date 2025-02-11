@@ -30,7 +30,7 @@ public class RestTemplateConfig {
         return (request, body, execution) -> {
             request.getHeaders().add("cnpj_sh", cnpjSh);
             request.getHeaders().add("token_sh", apiToken);
-            request.getHeaders().add("Content-Type", "text/tx2");
+            request.getHeaders().add("Content-Type", "application/json");
             return execution.execute(request, body);
         };
     }

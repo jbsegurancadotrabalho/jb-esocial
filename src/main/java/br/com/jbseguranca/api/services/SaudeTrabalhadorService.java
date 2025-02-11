@@ -20,25 +20,6 @@ public class SaudeTrabalhadorService {
 		this.restTemplate = restTemplate;
 	}
 
-	public SaudeTrabalhador consumirApiSaudeTrabalhador() {
-		try {
-			return restTemplate.getForObject(apiUrl, SaudeTrabalhador.class);
-		} catch (RestClientException ex) {
-			ex.printStackTrace();
-			throw new JbException("Erro ao consumir a API de Monitoramento de Saúde do Trabalhador.", ex);
-		}
-	}
-
-	public SaudeTrabalhador getSaudeTrabalhadorById(String id) {
-		try {
-			String url = apiUrl + "/" + id;
-			return restTemplate.getForObject(url, SaudeTrabalhador.class);
-		} catch (RestClientException ex) {
-			ex.printStackTrace();
-			throw new JbException("Erro ao obter dados de Saúde do Trabalho com ID: ");
-		}
-	}
-
 	public SaudeTrabalhador createSaudeTrabalhadorById(SaudeTrabalhador trabalhador) {
 		try {
 			return restTemplate.postForObject(apiUrl, trabalhador, SaudeTrabalhador.class);

@@ -4,11 +4,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class S2220Item {
 	
 	@NotNull(message = "O campo 'indRetif_4' não pode ser vazio\"")
@@ -98,8 +98,7 @@ public class S2220Item {
 	@Size(min = 2, max = 2, message = "UF do CRM do médico")
 	@JsonProperty("ufCRM_51")
 	private String ufCRM_51;
-
-	    @JsonProperty("EXAME_60")
-	    private List<Exame> exame60;
+	@JsonProperty("EXAME_60")
+	private List<Exame> exame60;
 
 }
