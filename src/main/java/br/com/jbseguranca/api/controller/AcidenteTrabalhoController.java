@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/acidentetrabalho")
-@Tag(name = "AcidenteTrabalho", description = "2210 - Operações de Acidente de Trabalho")
+@Tag(name = "AcidenteTrabalho", description = "S-2210 - Comunicação de Acidente de Trabalho")
 public class AcidenteTrabalhoController {
 
 	@Autowired

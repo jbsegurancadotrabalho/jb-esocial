@@ -13,23 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.jbseguranca.api.domain.AgentesNocivos;
 import br.com.jbseguranca.api.dto.ApiResponse;
 import br.com.jbseguranca.api.services.AgentesNocivosService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/agentes-nocivos")
+@Tag(name = "AgentesNocivos", description = "S-2240 - Condições Ambientais do Trabalho - Agentes Nocivos")
 public class AgentesNocivosController {
 	
 	@Autowired
 	private AgentesNocivosService agentesNocivosService;
-	
-	@GetMapping()
-	public AgentesNocivos getAfastamentoTemporario() {
-		return agentesNocivosService.consumirApiAgentesNocivos();
-	}
-	
-	@GetMapping("/{id}")
-	public AgentesNocivos getAgentesNocivosById(@PathVariable String id) {
-		return agentesNocivosService.getAgentesNocivosById(id);
-	}
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)

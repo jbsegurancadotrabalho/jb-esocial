@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/afastamentotemporario")
-@Tag(name = "Afastamento Temporario", description = "2230 - Afastamento Temporario")
+@Tag(name = "Afastamento Temporario", description = "S-2230 - Afastamento Temporário")
 public class AfastamentoTemporarioController {
 	
 	@Autowired
