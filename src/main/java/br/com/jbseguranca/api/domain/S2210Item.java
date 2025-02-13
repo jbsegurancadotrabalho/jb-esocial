@@ -1,34 +1,15 @@
 package br.com.jbseguranca.api.domain;
 
-import java.util.UUID;
-
-import org.hibernate.annotations.GenericGenerator;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(of = "id")
-@Entity
-@Table(name = "s2210_item")
 public class S2210Item {
-	
-	@Id
-	@GeneratedValue(generator = "UUID")
-	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-	private UUID id;
 	
 	@JsonIgnore
 	@NotNull(message = "não pode ser nulo")
@@ -249,9 +230,6 @@ public class S2210Item {
 	@NotNull(message = "não pode ser nulo")
 	@JsonProperty("nrRecCatOrig_65")
     private String nrRecCatOrig_65;
-    
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "acidente_trabalho_id")
 	@JsonIgnore
     private AcidenteTrabalho acidenteTrabalho;
     
