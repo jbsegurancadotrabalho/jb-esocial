@@ -10,7 +10,7 @@ O projeto e desenvolvido na linguagem **Java** versão **17** e utilizando o fra
 
 <h3>Endpoint's da API</h3>
 
-A API possibilida 3 endpont't 
+A API possibilida 4 endpont't 
 
 <ul>
   <li>
@@ -21,6 +21,9 @@ A API possibilida 3 endpont't
   </li>
   <li>
     SaudeTrabalhador
+  </li>
+    <li>
+   AgentesNocivos
   </li>
 </ul>
 
