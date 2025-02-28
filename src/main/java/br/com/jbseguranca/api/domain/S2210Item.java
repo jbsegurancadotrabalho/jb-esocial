@@ -1,13 +1,17 @@
 package br.com.jbseguranca.api.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
 public class S2210Item {
+	
+	@JsonIgnore
 	@NotNull(message = "não pode ser nulo")
     @JsonProperty("indRetif_4")
     private String indRetif_4;
@@ -214,9 +218,6 @@ public class S2210Item {
 	@JsonProperty("nmEmit_59")
     private String nmEmit_59;
 	@Size(max = 1)
-	@NotNull(message = "não pode ser nulo")
-	@JsonProperty("indIEmit_60")
-    private String ideOC_60;
 	@Size(min = 1, max = 14)
 	@NotNull(message = "não pode ser nulo")
 	@JsonProperty("nrOC_61")
@@ -229,7 +230,7 @@ public class S2210Item {
 	@NotNull(message = "não pode ser nulo")
 	@JsonProperty("nrRecCatOrig_65")
     private String nrRecCatOrig_65;
-    
-    
+	@JsonIgnore
+    private AcidenteTrabalho acidenteTrabalho;
     
 }

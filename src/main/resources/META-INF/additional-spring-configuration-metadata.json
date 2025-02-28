@@ -43,5 +43,40 @@
     "name": "ambiente",
     "type": "java.lang.String",
     "description": "A description for 'ambiente'"
+  },
+  {
+    "name": "acidente.trabalho.auth.empregador",
+    "type": "java.lang.String",
+    "description": "A description for 'acidente.trabalho.auth.empregador'"
+  },
+  {
+    "name": "endereco.tecnospeed.url.consulta",
+    "type": "java.lang.String",
+    "description": "A description for 'endereco.tecnospeed.url.consulta'"
+  },
+  {
+    "name": "tecnospeed.auth.login",
+    "type": "java.lang.String",
+    "description": "A description for 'tecnospeed.auth.login'"
+  },
+  {
+    "name": "tecnospeed.auth.token",
+    "type": "java.lang.String",
+    "description": "A description for 'tecnospeed.auth.token'"
+  },
+  {
+    "name": "tecnospeed.auth.cnpj",
+    "type": "java.lang.String",
+    "description": "A description for 'tecnospeed.auth.cnpj'"
+  },
+  {
+    "name": "tecnospeed.auth.empregador",
+    "type": "java.lang.String",
+    "description": "A description for 'tecnospeed.auth.empregador'"
+  },
+  {
+    "name": "urlExterna",
+    "type": "java.lang.String",
+    "description": "A description for 'urlExterna'"
   }
 ]}

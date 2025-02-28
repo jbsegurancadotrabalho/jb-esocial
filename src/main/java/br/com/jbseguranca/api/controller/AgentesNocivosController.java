@@ -8,26 +8,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.jbseguranca.api.domain.AfastamentoTemporario;
+import br.com.jbseguranca.api.domain.AgentesNocivos;
 import br.com.jbseguranca.api.dto.ApiResponse;
-import br.com.jbseguranca.api.services.AfastamentoTemporarioService;
+import br.com.jbseguranca.api.services.AgentesNocivosService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-
 @RestController
-@RequestMapping("/afastamentotemporario")
-@Tag(name = "Afastamento Temporario", description = "S-2230 - Afastamento Temporário")
-public class AfastamentoTemporarioController {
+@RequestMapping("/agentes-nocivos")
+@Tag(name = "AgentesNocivos", description = "S-2240 - Condições Ambientais do Trabalho - Agentes Nocivos")
+public class AgentesNocivosController {
 	
 	@Autowired
-	private AfastamentoTemporarioService afastamentoTemporarioService;
+	private AgentesNocivosService agentesNocivosService;
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	@Operation(summary = "Criar Afastamento Temporario")
-	public ApiResponse createAfastamentoTemporario(@RequestBody AfastamentoTemporario afastamento) {
-		return afastamentoTemporarioService.createAfastamentoTemporario(afastamento);
+	@Operation(summary = "Criar Agentes Nocivos")
+	public ApiResponse createAgentesNocivos(@RequestBody AgentesNocivos agentesNocivos) {
+		return agentesNocivosService.createAgentesNocivos(agentesNocivos);
 	}
 
 }

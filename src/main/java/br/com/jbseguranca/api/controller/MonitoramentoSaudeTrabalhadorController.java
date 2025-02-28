@@ -16,7 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/monitoramento-saude-trabalhador")
-@Tag(name = "MonitoramentoSaudeTrabalhador", description = "2210 - Operações de Acidente de Trabalho")
+@Tag(name = "MonitoramentoSaudeTrabalhador", description = "S-2220 - Monitoramento da Saúde do Trabalhador")
 public class MonitoramentoSaudeTrabalhadorController {
 	
 	@Autowired
