@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -13,11 +15,16 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.jbseguranca.api.domain.Empregador;
+import br.com.jbseguranca.api.dto.response.ConsultaEmpregadorDto;
 import br.com.jbseguranca.api.dto.response.EmpregadorDto;
 import br.com.jbseguranca.api.exception.JbException;
+import br.com.jbseguranca.api.exception.ResourceNotFoundException;
 
 @Service
 public class EmpregadorService {
+	
+	@Value("${consulta.empregador.tecnospeed.api.url}")
+	private String apiUrlConsultar;
 
 	@Value("${cadastrar.empregador.tecnospeed.api.url}")
 	private String apiUrl;
@@ -79,6 +86,46 @@ public class EmpregadorService {
 		}
 
 	}
+	
+	public ConsultaEmpregadorDto ConsultarEmpregadorPorCpfOuCnpj(String cpfOuCnpj) {
+		 if (apiUrlConsultar == null || apiUrlConsultar.isEmpty()) {
+		        throw new JbException("A URL da API não está configurada.");
+		    }
+		    
+		    try {
+		        String urlComId = apiUrlConsultar + "/" + cpfOuCnpj;
+		        
+		        HttpHeaders headers = new HttpHeaders();
+		        headers.set("cnpj_sh", cnpjSh);
+		        headers.set("token_sh", apiToken);
+		        headers.set("empregador", cpfOuCnpj);
+		        
+		        HttpEntity<String> entity = new HttpEntity<>(headers);
+		        
+		        ResponseEntity<String> response = restTemplate.exchange(urlComId, HttpMethod.GET, entity, String.class);
+		        HttpStatusCode statusCode = response.getStatusCode();
+		        
+		        if (statusCode.is2xxSuccessful()) {
+		            ObjectMapper objectMapper = new ObjectMapper();
+		            return objectMapper.readValue(response.getBody(), ConsultaEmpregadorDto.class);
+		        } else if (statusCode == HttpStatus.NOT_FOUND) {
+		            throw new ResourceNotFoundException("Empregador não encontrado " + cpfOuCnpj);
+		        } else {
+		            throw new JbException("Erro na API: Código " + response.getStatusCodeValue() 
+		                                      + " - Resposta: " + response.getBody());
+		        }
+		    } catch (HttpClientErrorException ex) {
+		        if (ex.getStatusCode() == HttpStatus.NOT_FOUND) {
+		            throw new ResourceNotFoundException("Consulta por lote não encontrado " + cpfOuCnpj, ex);
+		        }
+		        System.out.println("HttpClientErrorException: " + ex.getStatusCode() 
+		                           + " -> " + ex.getResponseBodyAsString());
+		        throw new JbException("Erro ao obter dados do empregador: " + ex.getMessage(), ex);
+		    } catch (Exception ex) {
+		        throw new JbException("Erro inesperado ao obter dados do empregador.", ex);
+		    }
+		}
+	
 	
 
 	public boolean isCnpjValido(String cnpj) {
