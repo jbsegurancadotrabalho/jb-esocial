@@ -43,16 +43,6 @@ public class AgentesNocivosService {
 		
 	}
 	
-	public AgentesNocivos getAgentesNocivosById(String id) {
-		 try {
-	            String url = apiUrl + "/" + id;
-	            return restTemplate.getForObject(url, AgentesNocivos.class);
-	        } catch (RestClientException ex) {
-	            ex.printStackTrace();
-	            throw new JbException("Erro ao obter o Agentes Nocivos com ID: " );
-	        }
-	}
-	
 	public ApiResponse createAgentesNocivos(AgentesNocivos agentesNocivos) {
 		 if (apiUrl == null || apiUrl.isEmpty()) {
 		        throw new JbException("A URL da API não está configurada.");
