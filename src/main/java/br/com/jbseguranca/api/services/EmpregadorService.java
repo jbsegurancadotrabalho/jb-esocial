@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -88,43 +89,55 @@ public class EmpregadorService {
 	}
 	
 	public ConsultaEmpregadorDto ConsultarEmpregadorPorCpfOuCnpj(String cpfOuCnpj) {
-		 if (apiUrlConsultar == null || apiUrlConsultar.isEmpty()) {
-		        throw new JbException("A URL da API não está configurada.");
-		    }
-		    
-		    try {
-		        String urlComId = apiUrlConsultar + "/" + cpfOuCnpj;
-		        
-		        HttpHeaders headers = new HttpHeaders();
-		        headers.set("cnpj_sh", cnpjSh);
-		        headers.set("token_sh", apiToken);
-		        headers.set("empregador", cpfOuCnpj);
-		        
-		        HttpEntity<String> entity = new HttpEntity<>(headers);
-		        
-		        ResponseEntity<String> response = restTemplate.exchange(urlComId, HttpMethod.GET, entity, String.class);
-		        HttpStatusCode statusCode = response.getStatusCode();
-		        
-		        if (statusCode.is2xxSuccessful()) {
-		            ObjectMapper objectMapper = new ObjectMapper();
-		            return objectMapper.readValue(response.getBody(), ConsultaEmpregadorDto.class);
-		        } else if (statusCode == HttpStatus.NOT_FOUND) {
-		            throw new ResourceNotFoundException("Empregador não encontrado " + cpfOuCnpj);
-		        } else {
-		            throw new JbException("Erro na API: Código " + response.getStatusCodeValue() 
-		                                      + " - Resposta: " + response.getBody());
-		        }
-		    } catch (HttpClientErrorException ex) {
-		        if (ex.getStatusCode() == HttpStatus.NOT_FOUND) {
-		            throw new ResourceNotFoundException("Consulta por lote não encontrado " + cpfOuCnpj, ex);
-		        }
-		        System.out.println("HttpClientErrorException: " + ex.getStatusCode() 
-		                           + " -> " + ex.getResponseBodyAsString());
-		        throw new JbException("Erro ao obter dados do empregador: " + ex.getMessage(), ex);
-		    } catch (Exception ex) {
-		        throw new JbException("Erro inesperado ao obter dados do empregador.", ex);
-		    }
-		}
+	    if (apiUrlConsultar == null || apiUrlConsultar.isEmpty()) {
+	        throw new JbException("A URL da API não está configurada.");
+	    }
+
+	    try {
+	        String urlComId = apiUrlConsultar + "/" + cpfOuCnpj;
+	        
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.set("cnpj", cnpjSh);
+	        headers.set("token", apiToken);
+	        headers.set("empregador", "25108808000118");
+
+	        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+	        // Fazer a chamada para a API
+	        ResponseEntity<String> response = restTemplate.exchange(urlComId, HttpMethod.GET, entity, String.class);
+	        HttpStatusCode statusCode = response.getStatusCode();
+
+	        System.out.println("Resposta da API: " + response.getStatusCodeValue());
+	        System.out.println("Corpo da resposta: " + response.getBody());
+
+	        if (statusCode.is2xxSuccessful()) {
+	            ObjectMapper objectMapper = new ObjectMapper();
+	            return objectMapper.readValue(response.getBody(), ConsultaEmpregadorDto.class);
+	        } else if (statusCode == HttpStatus.NOT_FOUND) {
+	            throw new ResourceNotFoundException("Empregador não encontrado " + cpfOuCnpj);
+	        } else {
+	            throw new JbException("Erro na API: Código " + response.getStatusCodeValue() 
+	                                  + " - Resposta: " + response.getBody());
+	        }
+	    } catch (HttpClientErrorException ex) {
+	        System.out.println("HttpClientErrorException: " + ex.getStatusCode() 
+	                           + " -> " + ex.getResponseBodyAsString());
+	        if (ex.getStatusCode() == HttpStatus.UNAUTHORIZED) {
+	            throw new JbException("Falha na autenticação. Verifique o CNPJ e o Token.", ex);
+	        } else if (ex.getStatusCode() == HttpStatus.NOT_FOUND) {
+	            throw new ResourceNotFoundException("Consulta por lote não encontrado " + cpfOuCnpj, ex);
+	        }
+	        throw new JbException("Erro ao obter dados do empregador: " + ex.getResponseBodyAsString(), ex);
+	    } catch (HttpServerErrorException ex) { 
+	        System.out.println("HttpServerErrorException: " + ex.getStatusCode() 
+	                           + " -> " + ex.getResponseBodyAsString());
+	        throw new JbException("Erro interno na API: " + ex.getResponseBodyAsString(), ex);
+	    } catch (Exception ex) {
+	        System.out.println("Erro inesperado: " + ex.getMessage());
+	        throw new JbException("Erro inesperado ao obter dados do empregador.", ex);
+	    }
+	}
+
 	
 	
 
