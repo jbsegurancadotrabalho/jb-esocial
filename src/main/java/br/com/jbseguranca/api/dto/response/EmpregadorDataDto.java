@@ -1,10 +1,12 @@
 package br.com.jbseguranca.api.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EmpregadorDataDto {
 	
 	 @JsonProperty("_id")
@@ -39,6 +41,10 @@ public class EmpregadorDataDto {
 
 	    @JsonProperty("enderecocidadeibge")
 	    private String enderecoCidadeIbge;
+	    
+	    
+	    @JsonProperty("certificado")
+	    private String certificado;
 
 	    @JsonProperty("uf")
 	    private String uf;
